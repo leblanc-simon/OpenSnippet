@@ -1,0 +1,33 @@
+{
+    "name": "leblanc-simon/opensnippet",
+    "description": "Management of snippets",
+    "version": "1.0.0-dev",
+    "homepage": "http://github.com/leblanc-simon/opensnippet",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Simon Leblanc",
+            "email": "contact@leblanc-simon.eu",
+            "homepage": "http://www.leblanc-simon.fr",
+            "role": "Developer"
+        }
+    ],
+    
+    "type": "application",
+    
+    "autoload": {
+        "psr-0": {
+            "OpenSnippet": "lib/"
+        }
+    },
+
+    "require": {
+        "php": ">=5.3.0",
+        
+        "silex/silex": "1.0.*",
+
+        "easybook/geshi": "dev-master"
+    },
+
+    "minimum-stability": "dev"
+}
