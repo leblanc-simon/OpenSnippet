@@ -1,0 +1,477 @@
+html {
+    height: 100%;
+}
+
+body {
+    background: #f0f2f4;
+    color: #747678;
+    font-size: 13px;
+    font-family: 'Roboto', Arial, sans-serif;
+    font-weight: 300;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.0004);
+    height: 100%;
+}
+
+/*******************************************
+ *
+ *    Flex box
+ *
+ *******************************************/
+.flex-container {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-direction: normal;
+       -moz-box-direction: normal;
+    -webkit-box-orient: horizontal;
+       -moz-box-orient: horizontal;
+    -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-flex-wrap: nowrap;
+        -ms-flex-wrap: nowrap;
+            flex-wrap: nowrap;
+    -webkit-box-pack: start;
+       -moz-box-pack: start;
+    -webkit-justify-content: flex-start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    -webkit-align-content: stretch;
+    -ms-flex-line-pack: stretch;
+    align-content: stretch;
+    -webkit-box-align: start;
+       -moz-box-align: start;
+    -webkit-align-items: flex-start;
+         -ms-flex-align: start;
+            align-items: flex-start;
+    min-height: 100%;
+}
+
+.flex-item:nth-child(1) {
+    -webkit-box-ordinal-group: 1;
+       -moz-box-ordinal-group: 1;
+    -ms-flex-order: 0;
+     -webkit-order: 0;
+             order: 0;
+    -webkit-box-flex: 0;
+       -moz-box-flex: 0;
+    -webkit-flex: 0 1 auto;
+        -ms-flex: 0 1 auto;
+            flex: 0 1 auto;
+    -ms-flex-item-align: stretch;
+     -webkit-align-self: stretch;
+             align-self: stretch;
+}
+
+.flex-item:nth-child(2) {
+    -webkit-box-ordinal-group: 1;
+       -moz-box-ordinal-group: 1;
+    -ms-flex-order: 0;
+     -webkit-order: 0;
+             order: 0;
+    -webkit-box-flex: 1;
+       -moz-box-flex: 1;
+    -webkit-flex: 1 1 auto;
+        -ms-flex: 1 1 auto;
+            flex: 1 1 auto;
+    -ms-flex-item-align: stretch;
+     -webkit-align-self: stretch;
+             align-self: stretch;
+}
+
+/*
+    Legacy Firefox implementation treats all flex containers
+    as inline-block elements.
+*/
+
+@-moz-document url-prefix() {
+    .flex-container {
+        width: 100%;
+        -moz-box-sizing: border-box;
+    }
+
+}
+
+a:hover, a:focus {
+    outline: medium none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #444444;
+    font-weight: 500;
+    line-height: 1.15;
+    margin-top: 0;
+}
+
+h2 {
+    font-size: 24px;
+}
+
+h3 {
+    font-size: 21px;
+}
+
+
+/*******************************************
+ *
+ *    Transition
+ *
+ *******************************************/
+.sidebar, .content, pre {
+    -webkit-transition: 500ms ease;
+    -moz-transition: 500ms ease;
+    -o-transition: 500ms ease;
+    -ms-transition: 500ms ease;
+    transition: 500ms ease;
+}
+
+.show-sidebar .sidebar {
+    margin-left: 0px;
+}
+
+/*******************************************
+ *
+ *    Sidebar
+ *
+ *******************************************/
+.sidebar {
+    background: #222;
+    width: 250px;
+    text-shadow: 0 1px 0 #000;
+    margin-left: -250px;
+}
+
+.sidebar ul {
+    margin: 0.8em 0.6em;
+}
+
+.sidebar .nav .nav-header {
+    color: #777777;
+    margin-top: 0.9em;
+    margin-bottom: 0.7em;
+    font-size: 15px;
+    font-weight: 400;
+    text-shadow: none;
+}
+
+.sidebar a {
+    color: #CCCCCC;
+    font-weight: 400;
+    text-decoration: none !important;
+}
+
+.sidebar a:hover {
+    color: #EEEEEE;
+}
+
+.sidebar .nav > li.active a {
+    background: none repeat scroll 0 0 #2A2A2A;
+    color: #FFFFFF;
+}
+
+.sidebar .nav > li > a {
+    border-radius: 2px 2px 2px 2px;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 20px;
+    margin: 0;
+    padding: 8px 5px 8px 5px;
+    text-shadow: inherit;
+}
+
+.sidebar .nav > li > a:hover {
+    background: none repeat scroll 0 0 #2A2A2A;
+}
+
+.sidebar .nav > li > a .label {
+    background: none repeat scroll 0 0 #0072C6;
+    border-radius: 2px 2px 2px 2px;
+    color: #FFFFFF;
+    float: right;
+    font-size: 11px;
+    font-weight: normal;
+    line-height: 20px;
+    padding: 0 10px;
+}
+
+.sidebar .homepage-link a {
+    background: none repeat scroll 0 0 #333333;
+    border-bottom: 1px solid #000000;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.3), 0 -1px 1px rgba(255, 255, 255, 0.05) inset;
+    display: block;
+    line-height: 24px;
+    margin: 0 -20px 25px;
+    padding: 15px 20px;
+    text-align: center;
+    color: #FFFFFF;
+    text-shadow: inherit;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+
+/*******************************************
+ *
+ *    Content
+ *
+ *******************************************/
+.navbar, .content-head, .content-body {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.content-head {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-bottom: 1px solid #D2D4D6;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.content-body {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+
+/*******************************************
+ *
+ *    Navbar
+ *
+ *******************************************/
+.navbar-static-tops {
+    background: none repeat scroll 0 0 #0870BE;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 0;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.5), 0 0 1px rgba(255, 255, 255, 0.5) inset;
+    color: #CACACA;
+    margin: 0;
+    text-align: center;
+}
+
+.navbar .btn i {
+    color: #FFFFFF;
+    font-size: 21px;
+    line-height: 20px;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
+    width: 22px;
+}
+
+.navbar .navbar-inner {
+    background: none repeat scroll 0 0 transparent;
+    border: 0 none;
+    box-shadow: none;
+    padding: 10px 0;
+}
+
+.brand {
+    font-family: 'Leckerli One',cursive;
+    color: #FFFFFF;
+    padding: 10px 0;
+    text-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
+    font-size: 23px;
+}
+
+.navbar .brand:hover, .navbar .brand:focus {
+    text-decoration: none;
+}
+
+/*******************************************
+ *
+ *    Breadcrumb
+ *
+ *******************************************/
+.breadcrumb {
+    background: none repeat scroll 0 0 transparent;
+    font-size: 90%;
+    margin: 0;
+    padding: 15px 0 20px;
+}
+
+.breadcrumb > li + li:before {
+    content: none;
+}
+
+.breadcrumb > li > .divider {
+    color: #CCCCCC;
+    padding: 0 5px;
+}
+
+.content .content-head h2 {
+    font-size: 24px;
+    line-height: 26px;
+    margin-bottom: 10px;
+}
+
+
+/*******************************************
+ *
+ *    Module
+ *
+ *******************************************/
+.module {
+  border: 1px solid #d2d4d8;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  margin: 0 0 30px;
+}
+.module.clean {
+  border: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}
+.module.no-head .module-body {
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+}
+.module .module-head {
+  background: #f7f8f9;
+  border-bottom: 1px solid #d9d9dd;
+  -webkit-border-radius: 2px 2px 0 0;
+  -moz-border-radius: 2px 2px 0 0;
+  border-radius: 2px 2px 0 0;
+  -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset;
+  -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset;
+  height: 40px;
+}
+.module .module-head > a,
+.module .module-head > b {
+  color: #727476;
+  display: inline-block;
+  font-weight: 500;
+  padding: 10px 15px;
+}
+.module .module-head a {
+  color: inherit;
+  text-decoration: none;
+}
+.module .module-head i {
+  font-size: 14px;
+  color: #999;
+  display: inline-block;
+  line-height: 20px;
+  float:right;
+  padding: 10px 20px;
+  background-color: #333;
+  font-weight: bold;
+}
+.module .module-foot {
+  background: #f7f8f9;
+  border-bottom: 1px solid #d9d9dd;
+  -webkit-border-radius: 2px 2px 0 0;
+  -moz-border-radius: 2px 2px 0 0;
+  border-radius: 2px 2px 0 0;
+  -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset;
+  -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset;
+  padding: 10px;
+  min-height: 53px;
+  position: relative;
+}
+.module .module-option {
+  padding: 15px;
+}
+.module .module-control {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 -1px;
+}
+.module .module-control > li {
+  float: left;
+  border-left: 1px solid #d9d9dd;
+}
+.module .module-control > li > a {
+  display: block;
+  padding: 10px 15px;
+}
+.module .module-control > li.active > a {
+  background: #fff;
+  padding-bottom: 11px;
+}
+.module .module-control.pull-left > li {
+  border-left: 0;
+  border-right: 1px solid #d9d9dd;
+}
+.module .module-body {
+  background: #fff;
+  padding: 15px;
+  -webkit-border-radius: 0 0 2px 2px;
+  -moz-border-radius: 0 0 2px 2px;
+  border-radius: 0 0 2px 2px;
+}
+.module .module-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.module .module-list p {
+  overflow: hidden;
+}
+.module .module-list > li {
+  padding: 15px;
+}
+.module .module-list > li + li {
+  border-top: 1px solid #e6e8ee;
+}
+.module .module-list > li ol li + li {
+  margin-top: 10px;
+}
+.module .module-list dl {
+  margin: 0;
+}
+.module .module-list dl dt {
+  text-align: left;
+}
+.module .module-list .progress {
+  margin: 0;
+}
+
+
+
+/*******************************************
+ *
+ *    Snippet code
+ *
+ *******************************************/
+pre {
+    max-height: 600px;
+    overflow: scroll;
+    -webkit-mask-image: -webkit-linear-gradient(top, rgba(0,0,0,1), rgba(0,0,0,1));
+            mask-image: linear-gradient(top, rgba(0,0,0,1), rgba(0,0,0,1));
+                  mask: url(../img/mask.svg#all);
+}
+
+.not-all pre {
+    max-height: 250px;
+    overflow: hidden;
+    -webkit-mask-image: -webkit-linear-gradient(top, rgba(0,0,0,1), rgba(0,0,0,0));
+            mask-image: linear-gradient(top, rgba(0,0,0,1), rgba(0,0,0,0));
+                  mask: url(../img/mask.svg#not-all);
+}
+
+.tags {
+    margin-right: 170px;
+}
+
+.tags span {
+    display: inline-block;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    padding: 3px 7px;
+    background-color: #0072C6;
+    color: #fff;
+    border-radius: 4px;
+    line-height: 12px;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.actions {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}

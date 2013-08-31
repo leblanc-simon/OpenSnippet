@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" height="0">
+    <mask id="not-all" maskUnits="objectBoundingBox" maskContentUnits="objectBoundingBox">
+        <linearGradient x2="0" y2="1" gradientUnits="objectBoundingBox" id="my-gradiant">
+            <stop stop-color="white" offset="0" />
+            <stop stop-color="white" stop-opacity="0" offset="1" />
+        </linearGradient>
+        <rect x="0" y="0" width="1" height="1" fill="url(#my-gradiant)" />
+    </mask>
+    <mask id="all" maskUnits="objectBoundingBox" maskContentUnits="objectBoundingBox">
+        <linearGradient x2="0" y2="1" gradientUnits="objectBoundingBox" id="my-not-gradiant">
+            <stop stop-color="white" offset="0" />
+            <stop stop-color="white" stop-opacity="1" offset="1" />
+        </linearGradient>
+        <rect x="0" y="0" width="1" height="1" fill="url(#my-not-gradiant)" />
+    </mask>
+</svg>
