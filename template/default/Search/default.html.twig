@@ -1,8 +1,10 @@
 {% extends "layout.html.twig" %}
 
+{% block title %}OpenSnippet &#149; Résultat de la recherche{% endblock %}
+
 {% block breadcrumb %}
                         <li><a href="{{ url('homepage') }}">Accueil</a> <span class="divider"><i class="icon-angle-right"></i></span></li>
-                        {% if current_category is defined %}
+                        {% if current_category is defined and current_category != null %}
                         <li class="active">{{ current_category['name'] }}</li>
                         {% else %}
                         <li class="active">Recherche</li>
@@ -12,10 +14,11 @@
 {% block page_title %}Résultat de la recherche{% endblock %}
 
 {% block content %}
-                        <div class="search">
-                            <ul id="tags"></ul>
-                        </div>
-                        {% for snippet in snippets %}
-                            {% include "snippet.html.twig" %}
-                        {% endfor %}
+                        {% if snippets|length > 0 %}
+                            {% for snippet in snippets %}
+                                {% include "snippet.html.twig" %}
+                            {% endfor %}
+                        {% else %}
+                        <div class="alert alert-danger">Aucun résultat</div>
+                        {% endif %}
 {% endblock %}

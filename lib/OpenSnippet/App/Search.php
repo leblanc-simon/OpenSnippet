@@ -65,7 +65,9 @@ class Search extends Base
             $snippets[] = new Model\Snippet($this->db, $data);
         }
 
-        return $this->render('Search/default.html.twig', array('snippets' => $snippets));
+        $search_tags = $this->db->fetchAll('SELECT * FROM tag WHERE slug in ('.$tag_in.')', $tags);
+
+        return $this->render('Search/default.html.twig', array('snippets' => $snippets, 'search_tags' => $search_tags));
     }
 
 
@@ -113,6 +115,12 @@ class Search extends Base
             $current_category = null;
         }
 
-        return $this->render('Search/default.html.twig', array('snippets' => $snippets, 'current_category' => $current_category));
+        $search_tags = $this->db->fetchAll('SELECT * FROM tag WHERE slug in ('.$tag_in.')', $tags);
+
+        return $this->render('Search/default.html.twig', array(
+                                'snippets' => $snippets, 
+                                'current_category' => $current_category, 
+                                'search_tags' => $search_tags)
+        );
     }
 }

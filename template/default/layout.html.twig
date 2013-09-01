@@ -7,6 +7,8 @@
         <link rel="stylesheet" href="{{ app.request.basePath ~ '/css/font-awesome.css' }}" />
         <link type="text/css" href="http://fonts.googleapis.com/css?family=Roboto:400,400italic,700,700italic,500italic,500,300italic,300" rel="stylesheet" />
         <link type="text/css" href="http://fonts.googleapis.com/css?family=Fugaz+One|Leckerli+One" rel="stylesheet" />
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+        <link rel="stylesheet" href="{{ app.request.basePath ~ '/css/vendor/jquery.taghandler.css' }}" />
         {% block css %}{% endblock %}
         <link rel="stylesheet" href="{{ app.request.basePath ~ '/css/style.css' }}" />
     </head>
@@ -29,6 +31,11 @@
                         {% block breadcrumb %}{% endblock %}
                     </ul>
                     <h2>{% block page_title %}{% endblock %}</h2>
+                    {% if not dont_show_search is defined %}
+                    <div class="search">
+                        <ul id="tags_list"></ul>
+                    </div>
+                    {% endif %}
                 </div>
 
                 <div class="content-body">
@@ -41,7 +48,13 @@
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="{{ app.request.basePath ~ '/js/vendor/jquery.taghandler.min.js' }}"></script>
         <script type="text/javascript" src="{{ app.request.basePath ~ '/js/app.js' }}"></script>
+        {% if not dont_show_search is defined %}
+        {% include "_search.html.twig" %}
+        <script type="text/javascript" src="{{ app.request.basePath ~ '/js/search.js' }}"></script>
+        {% endif %}
         {% block js %}{% endblock %}
     </body>
 </html>

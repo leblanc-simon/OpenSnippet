@@ -23,7 +23,7 @@ class Snippet extends Base
         $categories = $this->db->fetchAll('SELECT * FROM category ORDER BY name');
         $tags = $this->db->fetchAll('SELECT * FROM tag ORDER BY name');
 
-        return $this->render('Snippet/new.html.twig', array('categories' => $categories, 'tags' => $tags));
+        return $this->render('Snippet/new.html.twig', array('categories' => $categories, 'tags' => $tags, 'dont_show_search' => true));
     }
 
 
@@ -59,7 +59,7 @@ class Snippet extends Base
             throw new \Exception('Snippet doesn\'t exist', 404);
         }
 
-        return $this->render('Snippet/edit.html.twig', array('snippet' => $snippet, 'categories' => $categories, 'tags' => $tags));
+        return $this->render('Snippet/edit.html.twig', array('snippet' => $snippet, 'categories' => $categories, 'tags' => $tags, 'dont_show_search' => true));
     }
 
 

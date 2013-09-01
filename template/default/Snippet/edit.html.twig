@@ -2,18 +2,11 @@
 
 {% block title %}OpenSnippet &#149; Modifier le snippet "{{ snippet.name }}"{% endblock %}
 
-{% block css %}
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-        <link rel="stylesheet" href="{{ app.request.basePath ~ '/css/vendor/jquery.taghandler.css' }}" />
-{% endblock %}
-
 {% block js %}
         <script type="text/javascript">
             var available_tags = [ {% for tag in tags %}'{{ tag['name']|e('js') }}',{% endfor %} ];
             var assigned_tags = [ {% for tag in snippet.tags %}'{{ tag['name']|e('js') }}',{% endfor %} ];
         </script>
-        <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-        <script type="text/javascript" src="{{ app.request.basePath ~ '/js/vendor/jquery.taghandler.min.js' }}"></script>
         <script type="text/javascript" src="{{ app.request.basePath ~ '/js/snippet.js' }}"></script>
 {% endblock %}
 

@@ -1,0 +1,9 @@
+
+        <script type="text/javascript">
+            var available_tags = [ {% for tag in sidebar_tags %}'{{ tag['name']|e('js') }}',{% endfor %} ];
+            {% if search_tags is defined %}
+            var assigned_tags = [ {% for tag in search_tags %}'{{ tag['name']|e('js') }}',{% endfor %} ];
+            {% else %}
+            var assigned_tags = [];
+            {% endif %}
+        </script>
