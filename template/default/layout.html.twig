@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8" />
+        <title>{% block title %}OpenSnippet{% endblock %}</title>
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="{{ app.request.basePath ~ '/css/font-awesome.css' }}" />
+        <link type="text/css" href="http://fonts.googleapis.com/css?family=Roboto:400,400italic,700,700italic,500italic,500,300italic,300" rel="stylesheet" />
+        <link type="text/css" href="http://fonts.googleapis.com/css?family=Fugaz+One|Leckerli+One" rel="stylesheet" />
+        <link rel="stylesheet" href="{{ app.request.basePath ~ '/css/style.css' }}" />
+    </head>
+    <body class="show-sidebar">
+        <div class="flex-container">
+            <div class="flex-item sidebar">
+                <div>
+                    <span class="homepage-link"><a href="">Homepage</a></span>
+                    <ul class="nav nav-list">
+                        <li>
+                            <a href="{{ url('homepage') }}"><i class="icon-plus"></i> Nouveau Snippet</a>
+                        </li>
+                        <li class="nav-header">Catégories</li>
+                        <li class="active">
+                            <a href="">PHP<b class="label">6</b></a>
+                        </li>
+                        <li>
+                            <a href="">Javascript<b class="label">5</b></a>
+                        </li>
+                        <li>
+                            <a href="">Python<b class="label">5</b></a>
+                        </li>
+                        <li>
+                            <a href="">CSS<b class="label">1</b></a>
+                        </li>
+
+                        <li class="nav-header">Tags</li>
+                        <li>
+                            <a href="">chiffrement<b class="label">2</b></a>
+                        </li>
+                        <li>
+                            <a href="">administration<b class="label">2</b></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="flex-item">
+                <div class="navbar navbar-static-tops">
+                    <div class="navbar-inner">
+                        <a href="javascript:void(0);" class="btn pull-left toggle-sidebar">
+                            <i class="icon-reorder"></i>
+                        </a>
+                        <a class="brand" href="{{ url('homepage') }}">OpenSnippet</a>
+                    </div>
+                </div>
+
+                <div class="content-head">
+                    <ul class="breadcrumb">
+                        {% block breadcrumb %}{% endblock %}
+                    </ul>
+                    <h2>{% block page_title %}{% endblock %}</h2>
+                </div>
+
+                <div class="content-body">
+                    <div class="row-fluid">
+                        {% block content %}{% endblock %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="{{ app.request.basePath ~ '/js/app.js' }}"></script>
+    </body>
+</html>

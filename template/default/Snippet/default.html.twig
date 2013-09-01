@@ -1,0 +1,21 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}OpenSnippet &#149; snippet.name{% endblock %}
+
+{% block breadcrumb %}
+                        <li>
+                            <a href="{{ url('homepage') }}">Accueil</a>
+                            <span class="divider"><i class="icon-angle-right"></i></span>
+                        </li>
+                        <li>
+                            <a href="{{ url('search_category', {category_slug: snippet.category['slug']}) }}">{{ snippet.category['name'] }}</a>
+                            <span class="divider"><i class="icon-angle-right"></i></span>
+                        </li>
+                        <li class="active">{{ snippet.name }}</li>
+{% endblock %}
+
+{% block page_title %}{% endblock %}
+
+{% block content %}
+                        {% include "snippet.html.twig" with {'snippet_page': true} %}
+{% endblock %}

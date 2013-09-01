@@ -2,3 +2,5 @@ opensnippet.sublime-workspace
 opensnippet.sublime-project
 composer.lock
 vendor
+db/opensnippet.sqlite
+config/config.php

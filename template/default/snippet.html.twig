@@ -1,0 +1,28 @@
+                        <section class="module">
+                            <div class="module-head">
+                                <b><a href="{{ url('snippet', { id: snippet.id }) }}">{{ snippet.name }}</a></b>
+                                <i>{{ snippet.category['name'] }}</i>
+                            </div>
+                            <div class="module-body">
+                                <div class="code {% if not snippet_page is defined or snippet_page == false %}not-all{% endif %}">
+                                    {% autoescape false %}
+                                    {{ snippet.getValueSyntaxHighLighter }}
+                                    {% endautoescape %}
+                                </div>
+                            </div>
+                            <div class="module-foot">
+                                <div class="tags">
+                                    {% for tag in snippet.tags %}
+                                    <span><a href="{{ url("search_tag", { tag: tag['slug'] }) }}" data-tag="{{ tag['slug'] }}">{{ tag['name'] }}</a></span>
+                                    {% endfor %}
+                                </div>
+                                <div class="actions">
+                                    <button class="btn btn-primary">
+                                        Copier
+                                    </button>
+                                    <button class="btn btn-success extends">
+                                        &Eacute;tendre
+                                    </button>
+                                </div>
+                            </div>
+                        </section>

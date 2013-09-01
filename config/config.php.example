@@ -1,0 +1,18 @@
+<?php
+
+\OpenSnippet\Core\Config::add(array(
+    // Database configuration (DBAL type)
+    'database' => array(
+        'driver'    => 'pdo_sqlite',
+        'path'      => __DIR__.'/../db/opensnippet.sqlite'
+    ),
+
+    // Directory of the template
+    'template'      => 'default',
+
+    // Number of snippets show in the homepage
+    'nb_snippets'   => 5,
+
+    // Set the application in debug mode
+    'debug' => false,
+));
