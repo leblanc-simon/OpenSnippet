@@ -1,0 +1,21 @@
+{% extends "layout.html.twig" %}
+
+{% block breadcrumb %}
+                        <li><a href="{{ url('homepage') }}">Accueil</a> <span class="divider"><i class="icon-angle-right"></i></span></li>
+                        {% if current_category is defined %}
+                        <li class="active">{{ current_category['name'] }}</li>
+                        {% else %}
+                        <li class="active">Recherche</li>
+                        {% endif %}
+{% endblock %}
+
+{% block page_title %}Résultat de la recherche{% endblock %}
+
+{% block content %}
+                        <div class="search">
+                            <ul id="tags"></ul>
+                        </div>
+                        {% for snippet in snippets %}
+                            {% include "snippet.html.twig" %}
+                        {% endfor %}
+{% endblock %}

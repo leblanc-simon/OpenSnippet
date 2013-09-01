@@ -46,6 +46,7 @@ class Application
         })->bind('homepage');
 
         // Snippet page
+        // - new snippet
         $app->get('/snippet/new', function () use ($app) {
             $controler = new App\Snippet($app);
 
@@ -56,11 +57,13 @@ class Application
 
             return $controler->insertAction();
         })->bind('snippet_new_post');
+        // - show snippet
         $app->get('/snippet/{id}', function ($id) use ($app) {
             $controler = new App\Snippet($app);
 
             return $controler->defaultAction($id);
         })->bind('snippet');
+        // - edit snippet
         $app->get('/snippet/{id}/edit', function ($id) use ($app) {
             $controler = new App\Snippet($app);
 
@@ -78,16 +81,16 @@ class Application
 
             return $controler->categoryAction($category_slug);
         })->bind('search_category');
+        $app->get('/search/{category_slug}/tags/{tags}', function ($category_slug, $tags) use ($app) {
+            $controler = new App\Search($app);
+
+            return $controler->categoryTagsAction($category_slug, $tags);
+        })->bind('search_category_tags');
         $app->get('/search/tags/{tags}', function ($tags) use ($app) {
             $controler = new App\Search($app);
 
             return $controler->tagsAction($tags);
         })->bind('search_tags');
-        $app->get('/search/{category_slug}/{tags}', function ($category_slug, $tags) use ($app) {
-            $controler = new App\Search($app);
-
-            return $controler->categoryTagsAction($category_slug, $tags);
-        })->bind('search_category_tags');
     }
 
 
