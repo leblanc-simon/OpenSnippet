@@ -276,6 +276,10 @@ h3 {
     text-decoration: none;
 }
 
+.navbar .brand:hover, .navbar .brand:focus {
+    color: #fff;
+}
+
 /*******************************************
  *
  *    Breadcrumb
@@ -470,8 +474,27 @@ pre {
     white-space: nowrap;
 }
 
+.tags span a {
+    color: #fff;
+}
+
 .actions {
     position: absolute;
     right: 10px;
     top: 10px;
+}
+
+
+
+/*******************************************
+ *
+ *    Snippet : tag management
+ *
+ *******************************************/
+.ui-helper-hidden-accessible {
+    display: none;
+}
+
+.tagHandler ul.tagHandlerContainer li {
+    height: 20px;
 }

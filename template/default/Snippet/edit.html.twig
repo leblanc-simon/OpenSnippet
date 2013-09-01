@@ -1,0 +1,55 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}OpenSnippet &#149; Modifier le snippet "{{ snippet.name }}"{% endblock %}
+
+{% block css %}
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+        <link rel="stylesheet" href="{{ app.request.basePath ~ '/css/vendor/jquery.taghandler.css' }}" />
+{% endblock %}
+
+{% block js %}
+        <script type="text/javascript">
+            var available_tags = [ {% for tag in tags %}'{{ tag['name']|e('js') }}',{% endfor %} ];
+            var assigned_tags = [ {% for tag in snippet.tags %}'{{ tag['name']|e('js') }}',{% endfor %} ];
+        </script>
+        <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="{{ app.request.basePath ~ '/js/vendor/jquery.taghandler.min.js' }}"></script>
+        <script type="text/javascript" src="{{ app.request.basePath ~ '/js/snippet.js' }}"></script>
+{% endblock %}
+
+{% block breadcrumb %}
+                        <li>
+                            <a href="{{ url('homepage') }}">Accueil</a>
+                            <span class="divider"><i class="icon-angle-right"></i></span>
+                        </li>
+                        <li>
+                            <a href="{{ url('snippet', {id: snippet.id}) }}">{{ snippet.name}}</a>
+                            <span class="divider"><i class="icon-angle-right"></i></span>
+                        </li>
+                        <li class="active">Modifier</li>
+{% endblock %}
+
+{% block page_title %}Modifier le snippet "{{ snippet.name }}"{% endblock %}
+
+{% block content %}
+                        <form role="form" action="{{ url('snippet_update_post', {id: snippet.id}) }}" method="post">
+                            <section class="module">
+                                <div class="module-head">
+                                    <b>Modifier le snippet "{{ snippet.name }}"</b>
+                                </div>
+                                <div class="module-body">
+                                    {% include "Snippet/_edit.html.twig" %}
+                                </div>
+                                <div class="module-foot">
+                                    <div class="actions">
+                                        <button type="reset" class="btn btn-warning">
+                                            Annuler
+                                        </button>
+                                        <button type="submit" class="btn btn-success">
+                                            Enregistrer
+                                        </button>
+                                    </div>
+                                </div>
+                            </section>
+                        </form>
+{% endblock %}

@@ -7,41 +7,12 @@
         <link rel="stylesheet" href="{{ app.request.basePath ~ '/css/font-awesome.css' }}" />
         <link type="text/css" href="http://fonts.googleapis.com/css?family=Roboto:400,400italic,700,700italic,500italic,500,300italic,300" rel="stylesheet" />
         <link type="text/css" href="http://fonts.googleapis.com/css?family=Fugaz+One|Leckerli+One" rel="stylesheet" />
+        {% block css %}{% endblock %}
         <link rel="stylesheet" href="{{ app.request.basePath ~ '/css/style.css' }}" />
     </head>
     <body class="show-sidebar">
         <div class="flex-container">
-            <div class="flex-item sidebar">
-                <div>
-                    <span class="homepage-link"><a href="">Homepage</a></span>
-                    <ul class="nav nav-list">
-                        <li>
-                            <a href="{{ url('homepage') }}"><i class="icon-plus"></i> Nouveau Snippet</a>
-                        </li>
-                        <li class="nav-header">Catégories</li>
-                        <li class="active">
-                            <a href="">PHP<b class="label">6</b></a>
-                        </li>
-                        <li>
-                            <a href="">Javascript<b class="label">5</b></a>
-                        </li>
-                        <li>
-                            <a href="">Python<b class="label">5</b></a>
-                        </li>
-                        <li>
-                            <a href="">CSS<b class="label">1</b></a>
-                        </li>
-
-                        <li class="nav-header">Tags</li>
-                        <li>
-                            <a href="">chiffrement<b class="label">2</b></a>
-                        </li>
-                        <li>
-                            <a href="">administration<b class="label">2</b></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+            {% include '_sidebar/sidebar.html.twig' %}
 
             <div class="flex-item">
                 <div class="navbar navbar-static-tops">
@@ -71,5 +42,6 @@
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="{{ app.request.basePath ~ '/js/app.js' }}"></script>
+        {% block js %}{% endblock %}
     </body>
 </html>

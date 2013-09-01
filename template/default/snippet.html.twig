@@ -13,7 +13,7 @@
                             <div class="module-foot">
                                 <div class="tags">
                                     {% for tag in snippet.tags %}
-                                    <span><a href="{{ url("search_tag", { tag: tag['slug'] }) }}" data-tag="{{ tag['slug'] }}">{{ tag['name'] }}</a></span>
+                                    <span><a href="{{ url("search_tags", { tags: tag['slug'] }) }}" data-tag="{{ tag['slug'] }}">{{ tag['name'] }}</a></span>
                                     {% endfor %}
                                 </div>
                                 <div class="actions">

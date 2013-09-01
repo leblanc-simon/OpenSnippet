@@ -32,7 +32,7 @@ class Snippet
         if ($row === false) {
             throw new \Exception('Impossible to find the snippet');
         }
-        
+
         return $this->populate($row);
     }
 
@@ -72,12 +72,33 @@ class Snippet
 
     private function insert()
     {
+        $sql = 'INSERT INTO snippet (id, snippet_id, version, name, category_id, value) VALUES (?, ?, ?, ?, ?, ?);';
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(1, null, \PDO::PARAM_NULL);
+        $stmt->bindValue(2, null, \PDO::PARAM_NULL);
+        $stmt->bindValue(3, $this->getVersion(), \PDO::PARAM_INT);
+        $stmt->bindValue(4, $this->getName(), \PDO::PARAM_STR);
+        $stmt->bindValue(5, $this->getCategoryId(), \PDO::PARAM_INT);
+        $stmt->bindValue(6, $this->getValue(), \PDO::PARAM_STR);
 
+        $stmt->execute();
+        $this->setId($this->db->lastInsertId());
+
+        return $this;
     }
 
     private function update()
     {
+        $sql = 'UPDATE snippet SET name = ?, category_id = ?, value = ? WHERE id = ?;';
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(1, $this->getName(), \PDO::PARAM_STR);
+        $stmt->bindValue(2, $this->getCategoryId(), \PDO::PARAM_INT);
+        $stmt->bindValue(3, $this->getValue(), \PDO::PARAM_STR);
+        $stmt->bindValue(4, $this->getId(), \PDO::PARAM_INT);
 
+        $stmt->execute();
+
+        return $this;
     }
 
 
@@ -100,9 +121,57 @@ class Snippet
                                      FROM tag 
                                         INNER JOIN snippet_has_tag 
                                             ON tag.id = snippet_has_tag.tag_id 
-                                     WHERE snippet_has_tag.snippet_id = ?', array((int)$this->id));
+                                     WHERE snippet_has_tag.snippet_id = ?
+                                     ORDER BY tag.name', array((int)$this->id));
 
         return $tags;
+    }
+
+
+    public function removeTags()
+    {
+        if ($this->getId() === null) {
+            return $this;
+        }
+
+        $this->db->executeQuery('DELETE FROM snippet_has_tag WHERE snippet_id = ?', array((int)$this->getId()), array(\PDO::PARAM_INT));
+
+        return $this;
+    }
+
+
+    public function addTag($tag)
+    {
+        if ($this->getId() === null) {
+            return false;
+        }
+
+        // Check if the tags already exist
+        $row = $this->db->fetchAssoc('SELECT * FROM tag WHERE name = ?', array((string)$tag));
+        if ($row === false) {
+            // Build slug
+            $base_slug = \OpenSnippet\Core\String::labelize($tag);
+            $iterator = 0;
+            do {
+                $test_slug = $iterator === 0 ? $base_slug : $base_slug.'_'.($iterator);
+                $row = $this->db->fetchAssoc('SELECT * FROM tag WHERE slug = ?', array($test_slug));
+                if ($row === false) {
+                    $slug = $test_slug;
+                }
+                $iterator++;
+            } while (isset($slug) === false);
+
+            $this->db->executeQuery('INSERT INTO tag (name, slug) VALUES (?, ?)', array($tag, $slug), array(\PDO::PARAM_STR, \PDO::PARAM_STR));
+            $id = $this->db->lastInsertId();
+
+            $row = array(
+                'id' => $id,
+                'name' => $name,
+                'slug' => $slug,
+            );
+        }
+
+        $this->db->executeQuery('INSERT INTO snippet_has_tag (snippet_id, tag_id) VALUES (?, ?)', array((int)$this->getId(), (int)$row['id']));
     }
 
 
@@ -134,11 +203,15 @@ class Snippet
 
     public function setSnippetId($v)
     {
-        if (is_numeric($v) === false) {
+        if ($v !== null && is_numeric($v) === false) {
             throw new \InvalidArgumentException('the value must be a numeric');
         }
 
-        $this->snippet_id = (int)$v;
+        if ($v === null) {
+            $this->snippet_id = null;
+        } else {
+            $this->snippet_id = (int)$v;
+        }
     }
 
     public function setVersion($v)

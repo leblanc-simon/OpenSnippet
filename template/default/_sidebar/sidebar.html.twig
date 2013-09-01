@@ -1,0 +1,14 @@
+
+            <div class="flex-item sidebar">
+                <div>
+                    <span class="homepage-link"><a href="{{ url('homepage') }}">Homepage</a></span>
+                    <ul class="nav nav-list">
+                        <li>
+                            <a href="{{ url('snippet_new') }}"><i class="icon-plus"></i> Nouveau Snippet</a>
+                        </li>
+
+                        {% include '_sidebar/categories.html.twig' %}
+                        {% include '_sidebar/tags.html.twig' %}
+                    </ul>
+                </div>
+            </div>

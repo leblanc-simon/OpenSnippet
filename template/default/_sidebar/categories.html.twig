@@ -1,0 +1,9 @@
+
+                        <li class="nav-header">Catégories</li>
+                        {% for category in sidebar_categories %}
+                        <li {% if current_category is defined and current_category == category['id'] %}class="active"{% endif %}>
+                            <a href="{{ url('search_category', {category_slug: category['slug']}) }}">
+                                {{ category['name'] }}<b class="label">{{ category['count'] }}</b>
+                            </a>
+                        </li>
+                        {% endfor %}

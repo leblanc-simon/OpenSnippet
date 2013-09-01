@@ -46,16 +46,6 @@ class Application
         })->bind('homepage');
 
         // Snippet page
-        $app->get('/snippet/{id}', function ($id) use ($app) {
-            $controler = new App\Snippet($app);
-
-            return $controler->defaultAction($id);
-        })->bind('snippet');
-        $app->post('/snippet/{id}', function ($id) use ($app) {
-            $controler = new App\Snippet($app);
-
-            return $controler->updateAction($id);
-        })->bind('snippet_update');
         $app->get('/snippet/new', function () use ($app) {
             $controler = new App\Snippet($app);
 
@@ -66,6 +56,21 @@ class Application
 
             return $controler->insertAction();
         })->bind('snippet_new_post');
+        $app->get('/snippet/{id}', function ($id) use ($app) {
+            $controler = new App\Snippet($app);
+
+            return $controler->defaultAction($id);
+        })->bind('snippet');
+        $app->get('/snippet/{id}/edit', function ($id) use ($app) {
+            $controler = new App\Snippet($app);
+
+            return $controler->editAction($id);
+        })->bind('snippet_update');
+        $app->post('/snippet/{id}/edit', function ($id) use ($app) {
+            $controler = new App\Snippet($app);
+
+            return $controler->updateAction($id);
+        })->bind('snippet_update_post');
 
         // Search
         $app->get('/search/{category_slug}', function ($category_slug) use ($app) {

@@ -18,6 +18,6 @@ class Index extends Base
             $snippets[] = new Model\Snippet($this->db, $data);
         }
 
-        return $this->twig->render('Index/default.html.twig', array('snippets' => $snippets));
+        return $this->render('Index/default.html.twig', array('snippets' => $snippets));
     }
 }

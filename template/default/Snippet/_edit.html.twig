@@ -1,0 +1,29 @@
+                                    {% if snippet is defined %}
+                                        {% set edit = true %}
+                                    {% else %}
+                                        {% set edit = false %}
+                                    {% endif %}
+
+                                    <div class="form-group">
+                                        <label class="control-label" for="name">Nom</label>
+                                        <input {% if edit %}value="{{ snippet.name }}"{% endif %} class="form-control" type="text" id="name" name="name" placeholder="Entrer le nom du snippet">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label" for="category_id">Type</label>
+                                        <select class="form-control" id="category_id" name="category_id">
+                                            {% for category in categories %}
+                                            <option value="{{ category['id'] }}"{% if not edit and category['slug'] == 'php' %} selected="selected"{% elseif edit and category['id'] == snippet.categoryId %} selected="selected"{% endif %}>
+                                                {{ category['name'] }}
+                                            </option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label" for="value">Code</label>
+                                        <textarea rows="15" class="form-control" id="value" name="value" placeholder="Entrer le code du snippet">{% if edit %}{{ snippet.value }}{% endif %}</textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label" for="tags">Tags</label>
+                                        <input type="hidden" name="tags" id="tags" {% if edit %}value="{% for tag in snippet.tags %}{{ tag['name'] }},{% endfor %}"{% endif %} />
+                                        <ul id="tags_list"></ul>
+                                    </div>

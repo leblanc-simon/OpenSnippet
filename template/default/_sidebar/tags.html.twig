@@ -1,0 +1,9 @@
+
+                        <li class="nav-header">Tags</li>
+                        {% for tag in sidebar_tags %}
+                        <li>
+                            <a href="{{ url('search_tags', {tags: tag['slug']}) }}" data-tag="{{ tag['slug'] }}">
+                                {{ tag['name'] }}<b class="label">{{ tag['count'] }}</b>
+                            </a>
+                        </li>
+                        {% endfor %}

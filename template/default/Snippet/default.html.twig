@@ -14,7 +14,7 @@
                         <li class="active">{{ snippet.name }}</li>
 {% endblock %}
 
-{% block page_title %}{% endblock %}
+{% block page_title %}{{ snippet.name }} <a class="btn btn-warning pull-right" href="{{ url('snippet_update', {id: snippet.id}) }}">&Eacute;dition</a>{% endblock %}
 
 {% block content %}
                         {% include "snippet.html.twig" with {'snippet_page': true} %}
