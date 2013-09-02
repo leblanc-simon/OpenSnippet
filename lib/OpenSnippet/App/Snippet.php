@@ -41,6 +41,10 @@ class Snippet extends Base
         $snippet->save();
 
         foreach ($tags as $tag) {
+            $tag = trim($tag);
+            if (empty($tag) === true) {
+                continue;
+            }
             $snippet->addTag($tag);
         }
 
@@ -86,6 +90,10 @@ class Snippet extends Base
         $snippet->removeTags();
 
         foreach ($tags as $tag) {
+            $tag = trim($tag);
+            if (empty($tag) === true) {
+                continue;
+            }
             $snippet->addTag($tag);
         }
 
