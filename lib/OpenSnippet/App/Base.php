@@ -2,8 +2,6 @@
 
 namespace OpenSnippet\App;
 
-use OpenSnippet\Core\Config;
-
 
 /**
  * Base of controler
