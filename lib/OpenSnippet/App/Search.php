@@ -4,8 +4,23 @@ namespace OpenSnippet\App;
 
 use OpenSnippet\Model;
 
+
+/**
+ * Search controler
+ *
+ * @package     OpenSnippet
+ * @subpackage  OpenSnippet\App
+ * @author      Simon Leblanc <contact@leblanc-simon.eu>
+ * @license     http://www.opensource.org/licenses/bsd-license.php MIT
+ */
 class Search extends Base
 {
+    /**
+     * Show the category search page
+     *
+     * @param   string  $slug   The category's slug to search
+     * @return  string          The template rendering
+     */
     public function categoryAction($slug)
     {
         $sql = 'SELECT snippet.*
@@ -32,6 +47,12 @@ class Search extends Base
     }
 
 
+    /**
+     * Show the tag search page
+     *
+     * @param   string  $tags   The tags' slugs to search (separated by comma)
+     * @return  string          The template rendering
+     */
     public function tagsAction($tags)
     {
         $tags = explode(',', $tags);
@@ -71,6 +92,13 @@ class Search extends Base
     }
 
 
+    /**
+     * Show the category and tag search page
+     *
+     * @param   string  $slug   The category's slug to search
+     * @param   string  $tags   The tags' slugs to search (separated by comma)
+     * @return  string          The template rendering
+     */
     public function categoryTagsAction($slug, $tags)
     {
         $tags = explode(',', $tags);

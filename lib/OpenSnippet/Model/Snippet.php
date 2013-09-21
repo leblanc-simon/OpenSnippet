@@ -2,6 +2,15 @@
 
 namespace OpenSnippet\Model;
 
+
+/**
+ * Snippet database management
+ *
+ * @package     OpenSnippet
+ * @subpackage  OpenSnippet\Model
+ * @author      Simon Leblanc <contact@leblanc-simon.eu>
+ * @license     http://www.opensource.org/licenses/bsd-license.php MIT
+ */
 class Snippet
 {
     private $db = null;
@@ -26,6 +35,12 @@ class Snippet
         }
     }
 
+    /**
+     * Retrieve a snippet by id
+     *
+     * @param   int     $id     The id of the snippet to retrieve
+     * @return  Snippet         The snippet found
+     */
     public function retrieveByPK($id)
     {
         $row = $this->db->fetchAssoc('SELECT * FROM snippet WHERE id = ?', array((int)$id));
@@ -37,6 +52,12 @@ class Snippet
     }
 
 
+    /**
+     * Populate the Snippet object with the datas
+     *
+     * @param   array   $data   The datas to use for populate the snippet
+     * @return  self
+     */
     public function populate($data)
     {
         if (isset($data['id']) === true) {
@@ -61,6 +82,12 @@ class Snippet
         return $this;
     }
 
+
+    /**
+     * Save the Snippet object into the database
+     *
+     * @return  self
+     */
     public function save()
     {
         if ($this->id === null) {
@@ -70,6 +97,13 @@ class Snippet
         }
     }
 
+
+    /**
+     * Insert the Snippet object into the database
+     *
+     * @return  self
+     * @access  private
+     */
     private function insert()
     {
         $sql = 'INSERT INTO snippet (id, snippet_id, version, name, category_id, value) VALUES (?, ?, ?, ?, ?, ?);';
@@ -87,6 +121,13 @@ class Snippet
         return $this;
     }
 
+
+    /**
+     * Update the Snippet object into the database
+     *
+     * @return  self
+     * @access  private
+     */
     private function update()
     {
         $sql = 'UPDATE snippet SET name = ?, category_id = ?, value = ? WHERE id = ?;';
@@ -102,6 +143,11 @@ class Snippet
     }
 
 
+    /**
+     * Get the category associated to the snippet
+     *
+     * @return  array   An array with the value of the category
+     */
     public function getCategory()
     {
         if ($this->category === null) {
@@ -115,6 +161,11 @@ class Snippet
     }
 
 
+    /**
+     * Get the tags associated to the snippet
+     *
+     * @return  array   An array of array with the value of the tags
+     */
     public function getTags()
     {
         $tags = $this->db->fetchAll('SELECT tag.* 
@@ -128,6 +179,11 @@ class Snippet
     }
 
 
+    /**
+     * Remove all tags associated with the snippet
+     *
+     * @return  self
+     */
     public function removeTags()
     {
         if ($this->getId() === null) {
@@ -140,6 +196,9 @@ class Snippet
     }
 
 
+    /**
+     * Add a tag associated with the snippet
+     */
     public function addTag($tag)
     {
         if ($this->getId() === null) {
@@ -175,6 +234,11 @@ class Snippet
     }
 
 
+    /**
+     * Return the snippet's code in highlighter
+     *
+     * @return  string      The highlihter code
+     */
     public function getValueSyntaxHighLighter()
     {
         $category = $this->getCategory();

@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * Configuration
+ *
+ * @package     OpenSnippet
+ * @author      Simon Leblanc <contact@leblanc-simon.eu>
+ * @license     http://www.opensource.org/licenses/bsd-license.php MIT
+ */
+
 \OpenSnippet\Core\Config::add(array(
     // Database configuration (DBAL type)
     'database' => array(

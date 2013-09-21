@@ -5,7 +5,7 @@ namespace OpenSnippet\Core;
 use \OpenSnippet\App;
 
 /**
- * Classe gérant la configuration de l'application
+ * Main application class
  *
  * @package     OpenSnippet
  * @subpackage  OpenSnippet\Core
@@ -14,8 +14,20 @@ use \OpenSnippet\App;
  */
 class Application
 {
+    /**
+     * The Silex application instance
+     *
+     * @var     \Silex\Application
+     * @static
+     */
     static private $app = null;
 
+
+    /**
+     * Process the query (routing and dispatch)
+     *
+     * @static
+     */
     static public function run()
     {
         self::$app = new \Silex\Application();
@@ -34,6 +46,12 @@ class Application
     }
 
 
+    /**
+     * Build the routing
+     *
+     * @static
+     * @access  private
+     */
     static private function routing()
     {
         $app = self::$app;
@@ -94,6 +112,12 @@ class Application
     }
 
 
+    /**
+     * Register the service providers
+     *
+     * @static
+     * @access  private
+     */
     static private function register()
     {
         self::registerDoctrine();
@@ -102,6 +126,12 @@ class Application
     }
 
 
+    /**
+     * Register the service Doctrine (ORM)
+     *
+     * @static
+     * @access  private
+     */
     static private function registerDoctrine()
     {
         self::$app->register(new \Silex\Provider\DoctrineServiceProvider(), array(
@@ -110,11 +140,24 @@ class Application
     }
 
 
+    /**
+     * Register the service Url Generator
+     *
+     * @static
+     * @access  private
+     */
     static private function registerUrl()
     {
         self::$app->register(new \Silex\Provider\UrlGeneratorServiceProvider());
     }
 
+
+    /**
+     * Register the service Twig (template manager)
+     *
+     * @static
+     * @access  private
+     */
     static private function registerTwig()
     {
         self::$app->register(new \Silex\Provider\TwigServiceProvider(), array(

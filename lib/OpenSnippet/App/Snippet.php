@@ -4,8 +4,23 @@ namespace OpenSnippet\App;
 
 use OpenSnippet\Model;
 
+
+/**
+ * Snippet controler
+ *
+ * @package     OpenSnippet
+ * @subpackage  OpenSnippet\App
+ * @author      Simon Leblanc <contact@leblanc-simon.eu>
+ * @license     http://www.opensource.org/licenses/bsd-license.php MIT
+ */
 class Snippet extends Base
 {
+    /**
+     * Show the snippet page
+     *
+     * @param   int     $id     The id of the snippet to show
+     * @return  string          The template rendering
+     */
     public function defaultAction($id)
     {
         $snippet = new Model\Snippet($this->db, $id);
@@ -18,6 +33,11 @@ class Snippet extends Base
     }
 
 
+    /**
+     * Show the new snippet form page
+     *
+     * @return  string          The template rendering
+     */
     public function newAction()
     {
         $categories = $this->db->fetchAll('SELECT * FROM category ORDER BY name');
@@ -27,6 +47,9 @@ class Snippet extends Base
     }
 
 
+    /**
+     * Process the new snippet form
+     */
     public function insertAction()
     {
         if ($this->request->getMethod() !== 'POST') {
@@ -52,6 +75,12 @@ class Snippet extends Base
     }
 
 
+    /**
+     * Show the edit snippet form page
+     *
+     * @param   int     $id     The id of the snippet to edit
+     * @return  string          The template rendering
+     */
     public function editAction($id)
     {
         $categories = $this->db->fetchAll('SELECT * FROM category ORDER BY name');
@@ -67,6 +96,11 @@ class Snippet extends Base
     }
 
 
+    /**
+     * Process the edit snippet form
+     *
+     * @param   int     $id     The id of the snippet to process
+     */
     public function updateAction($id)
     {
         if ($this->request->getMethod() !== 'POST') {
@@ -101,6 +135,12 @@ class Snippet extends Base
     }
 
 
+    /**
+     * Get and check the request datas
+     *
+     * @return  array<name, category_id, value, tags>       The request datas
+     * @access  private
+     */
     private function getDatas()
     {
         $name = $this->request->get('name', '');

@@ -5,8 +5,22 @@ namespace OpenSnippet\App;
 use OpenSnippet\Core\Config;
 use OpenSnippet\Model;
 
+
+/**
+ * Homepage controler
+ *
+ * @package     OpenSnippet
+ * @subpackage  OpenSnippet\App
+ * @author      Simon Leblanc <contact@leblanc-simon.eu>
+ * @license     http://www.opensource.org/licenses/bsd-license.php MIT
+ */
 class Index extends Base
 {
+    /**
+     * Show the homepage
+     *
+     * @return  string      the template rendering
+     */
     public function defaultAction()
     {
         // Get the last snippets
