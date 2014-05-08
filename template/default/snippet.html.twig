@@ -4,11 +4,7 @@
                                 <i>{{ snippet.category['name'] }}</i>
                             </div>
                             <div class="module-body">
-                                <div class="code {% if not snippet_page is defined or snippet_page == false %}not-all{% endif %}">
-                                    {% autoescape false %}
-                                    {{ snippet.getValueSyntaxHighLighter }}
-                                    {% endautoescape %}
-                                </div>
+                                <div class="code {% if not snippet_page is defined or snippet_page == false %}not-all{% endif %}">{% autoescape false %}{{ snippet.getValueSyntaxHighLighter }}{% endautoescape %}</div>
                             </div>
                             <div class="module-foot">
                                 <div class="tags">
